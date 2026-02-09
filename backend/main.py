@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import io
 from datetime import datetime
+import cv2
 
 # ---------------------------
 # Initialize App
@@ -22,8 +23,13 @@ app.add_middleware(
 # ---------------------------
 # Load Emotion Model
 # ---------------------------
+face_cascade = cv2.CascadeClassifier(
+    "haarcascade_frontalface_default.xml"
+)
 
 model = load_model("emotion_model.h5")
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
 
 emotions = [
     "Angry",
@@ -51,16 +57,30 @@ def home():
 async def predict_emotion(file: UploadFile = File(...)):
     contents = await file.read()
 
-    img = Image.open(io.BytesIO(contents)).convert("L")
-    img = img.resize((48, 48))
+    image = Image.open(io.BytesIO(contents)).convert("RGB")
+    img_np = np.array(image)
+    gray = cv2.cvtColor(img_np, cv2.COLOR_RGB2GRAY)
 
-    img = np.array(img) / 255.0
-    img = img.reshape(1, 48, 48, 1)
+    faces = face_cascade.detectMultiScale(
+        gray,
+        scaleFactor=1.3,
+        minNeighbors=5
+    )
 
-    prediction = model.predict(img)
-    emotion = emotions[np.argmax(prediction)]
+    if len(faces) == 0:
+        return {"error": "No face detected"}
+
+    x, y, w, h = faces[0]
+    face = gray[y:y+h, x:x+w]
+    face = cv2.resize(face, (48,48))
+    face = face / 255.0
+    face = face.reshape(1,48,48,1)
+
+    pred = model.predict(face)
+    emotion = emotions[np.argmax(pred)]
 
     return {"emotion": emotion}
+
 
 # ---------------------------
 # Save Feedback
