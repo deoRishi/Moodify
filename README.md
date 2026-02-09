@@ -35,8 +35,29 @@ Moodify is an end-to-end AI-powered web application that detects a user's facial
 
 
 ---
+flowchart TD
+    A[User Webcam / Image Upload] --> B[Streamlit Frontend]
+    B --> C[FastAPI Backend]
+    C --> D[Face Detection - OpenCV Haar Cascade]
+    D --> E[Emotion CNN Model]
+    E --> C
+    C --> F[Predicted Emotion]
+    F --> G[Music Recommendation Logic]
+    G --> B
+    B --> H[User Feedback]
+    H --> I[Feedback CSV Storage]
 
+---
 
+flowchart LR
+    A[FER2013 Dataset] --> B[Preprocessing]
+    B --> C[Image Normalization]
+    C --> D[CNN Training]
+    D --> E[Trained Emotion Model]
+    E --> F[Saved as emotion_model.h5]
+    F --> G[Loaded by Backend API]
+
+---
 
 \## 🧠 Tech Stack
 
