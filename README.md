@@ -1,40 +1,73 @@
-\# 🎧 Moodify — AI Mood-Based Music Recommender
+# 🎧 Moodify — AI Mood-Based Music Recommender
 
+Moodify is an end-to-end AI-powered web application that detects a user's facial emotion using deep learning and recommends music based on the detected mood.
 
-
-Moodify is an end-to-end AI-powered web application that detects a user's facial emotion using deep learning and recommends music based on their mood.
-
-
+The system combines Computer Vision, Deep Learning, and Web Technologies to create a real-time intelligent music recommendation experience.
 
 ---
 
+## 🔥 Features
 
-
-\## 🔥 Features
-
-
-
-\- Facial emotion detection using CNN
-
-\- Webcam-based image capture
-
-\- Real-time emotion classification
-
-\- Mood-based Spotify playlist recommendation
-
-\- User feedback collection
-
-\- FastAPI backend
-
-\- Streamlit frontend
-
-\- Modular project structure
-
-\- One-click start/stop scripts
-
-
+- Facial emotion detection using CNN  
+- Face detection before emotion classification (OpenCV Haar Cascade)  
+- Webcam-based image capture  
+- Real-time emotion prediction  
+- Mood-based Spotify playlist recommendation  
+- User feedback collection system  
+- FastAPI backend  
+- Streamlit frontend  
+- Modular project structure  
+- One-click start & stop automation  
 
 ---
+
+## 🧠 Tech Stack
+
+- Python 3.10  
+- TensorFlow / Keras  
+- OpenCV  
+- FastAPI  
+- Streamlit  
+- NumPy, Pandas  
+- Git & GitHub  
+
+---
+
+## 📁 Project Structure
+
+```
+Moodify/
+│
+├── backend/
+│   ├── main.py
+│   ├── emotion_model.h5
+│   └── haarcascade_frontalface_default.xml
+│
+├── frontend/
+│   └── app.py
+│
+├── model/
+│   └── train_emotion_model.ipynb
+│
+├── data/
+│   └── fer2013/
+│       ├── train/
+│       └── test/
+│
+├── feedback/
+│   └── feedback.csv
+│
+├── start_moodify.bat
+├── stop_moodify.bat
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
 flowchart TD
     A[User Webcam / Image Upload] --> B[Streamlit Frontend]
     B --> C[FastAPI Backend]
@@ -46,9 +79,13 @@ flowchart TD
     G --> B
     B --> H[User Feedback]
     H --> I[Feedback CSV Storage]
+```
 
 ---
 
+## 🧠 Model Training Pipeline
+
+```mermaid
 flowchart LR
     A[FER2013 Dataset] --> B[Preprocessing]
     B --> C[Image Normalization]
@@ -56,176 +93,59 @@ flowchart LR
     D --> E[Trained Emotion Model]
     E --> F[Saved as emotion_model.h5]
     F --> G[Loaded by Backend API]
+```
 
 ---
 
-\## 🧠 Tech Stack
-
-
-
-\- Python 3.10  
-
-\- TensorFlow / Keras  
-
-\- OpenCV  
-
-\- FastAPI  
-
-\- Streamlit  
-
-\- NumPy, Pandas  
-
-\- Git \& GitHub  
-
-
-
----
-
-
-
-\## 📁 Project Structure
-
-
-
-Moodify/
-
-│
-
-├── backend/
-
-│ └── main.py
-
-│
-
-├── frontend/
-
-│ └── app.py
-
-│
-
-├── model/
-
-│ └── train\_emotion\_model.ipynb
-
-│
-
-├── data/
-
-│ └── fer2013/
-
-│
-
-├── feedback/
-
-│ └── feedback.csv
-
-│
-
-├── start\_moodify.bat
-
-├── stop\_moodify.bat
-
-├── requirements.txt
-
-└── README.md
-
-
-
-
-
----
-
-
-
-\## ⚙️ Installation
-
-
+## ⚙️ Installation
 
 ```bash
-
 python -m venv moodenv
-
-moodenv\\Scripts\\activate
-
+moodenv\Scripts\activate
 pip install -r requirements.txt
+```
 
+---
 
+## ▶️ Run Application
 
+Start everything:
 
+```bash
+start_moodify.bat
+```
 
-▶️ Run Application
+Stop everything:
 
-start\_moodify.bat
+```bash
+stop_moodify.bat
+```
 
+---
 
+## 📸 How It Works
 
+1. User captures face using webcam  
+2. Face is detected and cropped  
+3. CNN predicts emotion  
+4. Backend returns emotion  
+5. Frontend shows result  
+6. Spotify playlist suggested  
+7. User provides feedback  
 
+---
 
-Stop:
+## 📈 Future Improvements
 
-stop\_moodify.bat
+- Transfer learning (MobileNet / ResNet)  
+- Personalized music recommendations  
+- User accounts  
+- Cloud deployment  
+- Mobile app version  
+- Advanced recommender system  
 
+---
 
+## 👨‍💻 Author
 
-📸 How It Works
-
-
-
-Capture face using webcam
-
-
-
-CNN predicts emotion
-
-
-
-Backend returns emotion
-
-
-
-Frontend shows result
-
-
-
-Spotify playlist suggested
-
-
-
-User provides feedback
-
-
-
-
-
-📈 Future Improvements
-
-
-
-Face detection before emotion classification
-
-
-
-Transfer learning (ResNet/MobileNet)
-
-
-
-User accounts
-
-
-
-Cloud deployment
-
-
-
-Advanced recommender system
-
-
-
-
-
-👨‍💻 Author
-
-@deoRishi
-
-Email : deoghariarishikesh2005@gmail.com
-
+RKD
