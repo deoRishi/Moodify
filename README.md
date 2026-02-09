@@ -148,4 +148,6 @@ stop_moodify.bat
 
 ## 👨‍💻 Author
 
-RKD
+Rishikesh Deogharia
+@deoRishi
+Email : deoghariarishikesh2005@gmail.com
